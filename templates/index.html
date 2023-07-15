@@ -8,12 +8,20 @@
   </head>
   <body>
     <div class="container"></div>
-    <p class="instructions">Click to copy color code to clipboard</p>
 
-    <form id="form">
+    <form id="form" autocomplete="off">
       <input type="text" name="query" />
       <button class="btn">Submit</button>
+      <div id="instructions">
+        <p>
+          Enter your search term and click submit to generate a color palette.
+        </p>
+      </div>
+      <div id="click-instructions">
+        <p>Click on the color to copy to clipboard</p>
+      </div>
     </form>
+
     <script src="/static/app.js"></script>
   </body>
 </html>
