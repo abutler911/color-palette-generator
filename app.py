@@ -39,20 +39,14 @@ def get_colors(msg):
 
 @app.route("/palette", methods=["POST"])
 def prompt_to_palette():
-    app.logger.info("Hit the POST request route")
     query = request.form.get("query")
     colors = get_colors(query)
-    app.logger.info(colors)
-    return colors
+    return {"colors": colors}
 
 
 @app.route("/")
 def index():
-    response = openai.Completion.create(
-        model="text-davinci-003", prompt="Give me a funny word:  "
-    )
-    return response["choices"][0]["text"]
-    # return render_template('index.html')
+    return render_template("index.html")
 
 
 if __name__ == "__main__":
