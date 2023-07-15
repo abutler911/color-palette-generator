@@ -3,15 +3,16 @@ import json
 from dotenv import dotenv_values
 from flask import Flask, render_template, request
 
-config = dotenv_values(".env")
-openai.api_key = config["OPENAI_API_KEY"]
-
-
 app = Flask(__name__, template_folder="templates")
 
 
-def get_colors(msg):
-    prompt = f""" 
+def load_config():
+    config = dotenv_values(".env")
+    openai.api_key = config["OPENAI_API_KEY"]
+
+
+def create_prompt(msg):
+    return f""" 
     You are a color palette generating assistant that responds to text prompts for color palettes. You should generate color palettes that fit the theme, mood, or instructions in the prompt.
     The palettes should be between 2 and 8 colors.
     Q: Convert the following verbal description of a color palette into a list of colors: The Mediterranean Sea.
@@ -27,14 +28,16 @@ def get_colors(msg):
     Result: 
     """
 
+
+def get_colors(msg):
+    prompt = create_prompt(msg)
     response = openai.Completion.create(
         prompt=prompt,
         model="text-davinci-003",
         max_tokens=200,
     )
 
-    colors = json.loads(response["choices"][0]["text"])
-    return colors
+    return json.loads(response["choices"][0]["text"])
 
 
 @app.route("/palette", methods=["POST"])
@@ -49,5 +52,10 @@ def index():
     return render_template("index.html")
 
 
-if __name__ == "__main__":
+def main():
+    load_config()
     app.run(debug=True)
+
+
+if __name__ == "__main__":
+    main()
