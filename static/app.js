@@ -55,10 +55,7 @@ function createColorBlock(color, container, colorCount) {
 function updateTextColor(element) {
   const color = window.getComputedStyle(element).backgroundColor;
   const rgb = color.match(/(\d+)/g);
-
-  // calculate luminance
   const luminance = (0.299 * rgb[0] + 0.587 * rgb[1] + 0.114 * rgb[2]) / 255;
-
   if (luminance <= 0.5) {
     element.childNodes[0].style.color = "white";
   } else {
