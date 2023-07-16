@@ -99,7 +99,7 @@ body {
 
 /* Spinner styles */
 .spinner {
-  display: none; /* Initially hidden */
+  display: none;
   margin: 0 auto;
   width: 50px;
   height: 40px;
