@@ -27,6 +27,7 @@ body {
   font-weight: 600;
   width: 100%;
   text-align: center;
+  margin-top: 15px;
 }
 .color,
 .color span {
@@ -96,6 +97,50 @@ body {
   opacity: 0.6;
 }
 
+/* Spinner styles */
+.spinner {
+  display: none; /* Initially hidden */
+  margin: 0 auto;
+  width: 50px;
+  height: 40px;
+  text-align: center;
+  font-size: 10px;
+}
+
+.spinner > div {
+  background-color: #333;
+  height: 100%;
+  width: 6px;
+  display: inline-block;
+  animation: sk-stretchdelay 1.2s infinite ease-in-out;
+}
+
+.spinner .rect2 {
+  animation-delay: -1.1s;
+}
+
+.spinner .rect3 {
+  animation-delay: -1s;
+}
+
+.spinner .rect4 {
+  animation-delay: -0.9s;
+}
+
+.spinner .rect5 {
+  animation-delay: -0.8s;
+}
+
+@keyframes sk-stretchdelay {
+  0%,
+  40%,
+  100% {
+    transform: scaleY(0.4);
+  }
+  20% {
+    transform: scaleY(1);
+  }
+}
 @media screen and (max-width: 600px) {
   .color span {
     font-size: 0.8rem;

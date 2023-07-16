@@ -14,6 +14,8 @@ function submitForm(e) {
   instructions.style.display = "none";
   clickInstructions.style.display = "block";
 
+  showSpinner();
+
   sendPostRequest(query).then(displayColors);
   form.elements.query.value = "";
 }
@@ -33,6 +35,7 @@ function displayColors(data) {
   const container = document.querySelector(".container");
   container.innerHTML = "";
   colors.forEach((color) => createColorBlock(color, container, colors.length));
+  hideSpinner();
 }
 
 function createColorBlock(color, container, colorCount) {
@@ -61,4 +64,12 @@ function updateTextColor(element) {
   } else {
     element.childNodes[0].style.color = "black";
   }
+}
+
+function showSpinner() {
+  document.querySelector(".spinner").style.display = "block";
+}
+
+function hideSpinner() {
+  document.querySelector(".spinner").style.display = "none";
 }
